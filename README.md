@@ -1,6 +1,6 @@
 # A bioRxiv/medRxiv downloader in JavaScript
 
-A JavaScript script to download bioRxiv metadata
+A JavaScript script to download bioRxiv/medRxiv metadata
 
 See also:
 
