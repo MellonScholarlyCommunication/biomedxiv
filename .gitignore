@@ -1,0 +1,4 @@
+package-lock.json
+data*
+select.sh
+node_modules/**
