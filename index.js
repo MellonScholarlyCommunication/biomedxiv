@@ -1,20 +1,31 @@
 import fetch from 'node-fetch';
 
-const baseurl = 'https://api.biorxiv.org/details/biorxiv';
+let baseurl = 'https://api.biorxiv.org/details/biorxiv';
 
-if (process.argv.length !== 4) {
-    console.error('usage: index.js startDate endDate');
+if (process.argv.length !== 5) {
+    console.error('usage: index.js server startDate endDate');
     process.exit(1);
 }
 
-let startDate  = process.argv[2];
-let endDate    = process.argv[3];
+let server     = process.argv[2];
+let startDate  = process.argv[3];
+let endDate    = process.argv[4];
 let sleepTime  = 3000;
 let maxRetries = 10;
 let maxTime    = 60 * 1000;
 
-fetchData(startDate,endDate);
+if (server === 'biorxiv') {
+    baseurl = 'https://api.biorxiv.org/details/biorxiv'; 
+}
+else if (server == 'medrxiv') {
+    baseurl = 'https://api.biorxiv.org/details/medrxiv';
+}
+else {
+    console.error('need biorxiv or medrxiv server');
+    process.exit(1);
+}
 
+fetchData(startDate,endDate);
 
 async function fetchData(startDate,endDate) {
     let cursor    = 0;
